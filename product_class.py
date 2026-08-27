@@ -54,3 +54,48 @@ class Product(ProductBase):
         self.__low_stock_level = new_level
         return True
 
+    # Quantity methods
+
+    def add_quantity(self, amount):
+        if amount <= 0:
+            return False
+
+        self.__quantity += amount
+        return True
+
+    def reduce_quantity(self, amount):
+        if amount <= 0:
+            return False
+
+        if amount > self.__quantity:
+            return False
+
+        self.__quantity -= amount
+        return True
+
+    # Check stock
+
+    def is_low_stock(self):
+        return self.__quantity <= self.__low_stock_level
+
+    # Display product details
+
+    def display_details(self):
+        print("\n----- PRODUCT DETAILS -----")
+        print(f"Product ID: {self.__product_id}")
+        print(f"Name: {self.__name}")
+        print(f"Price: {self.__price:.2f}")
+        print(f"Quantity: {self.__quantity}")
+        print(f"Low Stock Level: {self.__low_stock_level}")
+        print("---------------------------")
+
+    # Convert object into dictionary
+
+    def to_dictionary(self):
+        return {
+            "product_id": self.__product_id,
+            "name": self.__name,
+            "price": self.__price,
+            "quantity": self.__quantity,
+            "low_stock_level": self.__low_stock_level
+        }
