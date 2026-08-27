@@ -14,4 +14,3 @@ class testproduct(unittest.TestCase):
         result=self.product.price(-50.0)
         self.assertFalse(result)
         self.assertEqual(self.product.price(),50.0)
-        
